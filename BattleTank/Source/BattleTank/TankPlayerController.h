@@ -17,8 +17,21 @@ class BATTLETANK_API ATankPlayerController : public APlayerController
 	
 	
 public:
+
+	// runs when game starts
+	virtual void BeginPlay() override;
+
+	// called every frame
+	virtual void Tick(float DeltaTime) override;
+
+	// Finds playerController
 	ATank* GetPlayerController() const;
 
-	virtual void BeginPlay() override;
+	// Begins to move barrel to position where a shot would hit
+	// where crosshair intersects the world
+	void AimTowardsCrosshair();
+
+	// Returns true crosshair hits landscape and updates OutHitLocation(OutParameter)
+	bool GetSightRayHitLocation(FVector& OutHitLocation) const;
 	
 };
