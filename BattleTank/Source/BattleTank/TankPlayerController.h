@@ -24,6 +24,8 @@ public:
 	// called every frame
 	virtual void Tick(float DeltaTime) override;
 
+private:
+
 	// Finds playerController
 	ATank* GetPlayerController() const;
 
@@ -31,7 +33,20 @@ public:
 	// where crosshair intersects the world
 	void AimTowardsCrosshair();
 
-	// Returns true crosshair hits landscape and updates OutHitLocation(OutParameter)
+	// Returns true when crosshair hits landscape and updates OutHitLocation(OutParameter)
 	bool GetSightRayHitLocation(FVector& OutHitLocation) const;
-	
+
+	UPROPERTY(EditAnywhere)
+	float CrossHairXLocation = 0.5;
+
+	UPROPERTY(EditAnywhere)
+	float CrossHairYLocation = 0.33333;
+
+	UPROPERTY(EditAnywhere)
+	float LineTraceLength = 1000000;
+
+
+	bool GetLookDirection(FVector2D ScreenLocation, FVector& LookDirection) const;
+
+	bool GetVectorHitLocation(FVector LookDirection, FVector& HitLocation) const;
 };
